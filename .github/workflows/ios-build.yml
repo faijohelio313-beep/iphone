@@ -5,9 +5,28 @@ on:
     inputs:
       build_id:
         description: 'Unique build identifier'
+        required: true
+        type: string
+      ios_path:
+        description: 'Path to iOS project'
         required: false
         type: string
-        default: 'FaiCalculer'
+        default: 'ios/App'
+      scheme:
+        description: 'Xcode scheme to build'
+        required: false
+        type: string
+        default: 'App'
+      use_signing:
+        description: 'Enable code signing'
+        required: false
+        type: boolean
+        default: false
+      configuration:
+        description: 'Build configuration'
+        required: false
+        type: string
+        default: 'Debug'
   push:
     branches: [ main, master ]
 
@@ -25,61 +44,88 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Restore DerivedData cache
+        uses: actions/cache/restore@v4
+        id: cache-deriveddata
         with:
-          node-version: '20'
+          path: DerivedData
+          key: deriveddata-${{ github.run_id }}
+          restore-keys: |
+            deriveddata-
 
-      - name: Install npm dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: Copy Capacitor Assets
-        run: npx cap copy ios
-
-      - name: Build IPA with Xcode
+      - name: Detect project type
+        id: detect
         run: |
-          cd ios/App
+          if [ -f "pubspec.yaml" ]; then
+            echo "type=flutter" >> $GITHUB_OUTPUT
+          elif [ -f "package.json" ] && grep -q '"expo"' package.json; then
+            echo "type=expo" >> $GITHUB_OUTPUT
+          elif [ -f "package.json" ] && grep -q '"react-native"' package.json; then
+            echo "type=reactnative" >> $GITHUB_OUTPUT
+          else
+            echo "type=native" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build IPA
+        env:
+          BUILD_ID: ${{ inputs.build_id || 'FaiCalculer' }}
+          IOS_PATH: ${{ inputs.ios_path || 'ios/App' }}
+          SCHEME: ${{ inputs.scheme || 'App' }}
+          PROJECT_TYPE: ${{ steps.detect.outputs.type }}
+          USE_SIGNING: ${{ inputs.use_signing || 'false' }}
+          CONFIGURATION: ${{ inputs.configuration || 'Debug' }}
+        run: |
+          set -e
+
+          # Navigate to iOS project
+          cd "$IOS_PATH"
+
+          # Find workspace or project
+          WORKSPACE=$(find . -maxdepth 1 -name "*.xcworkspace" | head -1)
+          PROJECT=$(find . -maxdepth 1 -name "*.xcodeproj" | head -1)
+
+          if [ -f "Podfile" ]; then
+            echo "Running pod install..."
+            pod install
+            WORKSPACE=$(find . -maxdepth 1 -name "*.xcworkspace" | head -1)
+          fi
+
           DERIVED_DATA_PATH="${GITHUB_WORKSPACE}/DerivedData"
 
-          if [ -d "App.xcworkspace" ]; then
-            BUILD_FLAG="-workspace App.xcworkspace"
-          else
-            BUILD_FLAG="-project App.xcodeproj"
+          BUILD_CMD="xcodebuild"
+          if [ -n "$WORKSPACE" ]; then
+            BUILD_CMD="$BUILD_CMD -workspace $WORKSPACE"
+          elif [ -n "$PROJECT" ]; then
+            BUILD_CMD="$BUILD_CMD -project $PROJECT"
           fi
 
-          echo "Building with $BUILD_FLAG ..."
+          BUILD_CMD="$BUILD_CMD -scheme $SCHEME"
+          BUILD_CMD="$BUILD_CMD -configuration $CONFIGURATION"
+          BUILD_CMD="$BUILD_CMD -destination 'generic/platform=iOS'"
+          BUILD_CMD="$BUILD_CMD -derivedDataPath $DERIVED_DATA_PATH"
+          BUILD_CMD="$BUILD_CMD COMPILER_INDEX_STORE_ENABLE=NO"
+          BUILD_CMD="$BUILD_CMD DEBUG_INFORMATION_FORMAT=dwarf"
+          BUILD_CMD="$BUILD_CMD ONLY_ACTIVE_ARCH=YES"
+          BUILD_CMD="$BUILD_CMD CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=''"
+          BUILD_CMD="$BUILD_CMD build"
 
-          xcodebuild $BUILD_FLAG \
-            -scheme App \
-            -configuration Debug \
-            -destination 'generic/platform=iOS' \
-            -derivedDataPath "$DERIVED_DATA_PATH" \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGN_ENTITLEMENTS="" \
-            DEVELOPMENT_TEAM="" \
-            COMPILER_INDEX_STORE_ENABLE=NO \
-            DEBUG_INFORMATION_FORMAT=dwarf \
-            ONLY_ACTIVE_ARCH=YES \
-            build
+          echo "Running: $BUILD_CMD"
+          eval $BUILD_CMD
 
-          APP_PATH=$(find "$DERIVED_DATA_PATH/Build/Products/Debug-iphoneos" -name "App.app" -type d | head -1)
+          APP_PATH=$(find "$DERIVED_DATA_PATH/Build/Products/${CONFIGURATION}-iphoneos" -name "*.app" -type d | head -1)
 
           if [ -z "$APP_PATH" ]; then
-            echo "Error: Could not find App.app output"
+            echo "Error: Could not find .app"
             exit 1
           fi
-
-          echo "Found compiled app at: $APP_PATH"
-
-          cd "$GITHUB_WORKSPACE"
+          echo "Found app at: $APP_PATH"
+          cd "${GITHUB_WORKSPACE}"
           mkdir -p build/Payload
           cp -R "$APP_PATH" build/Payload/
           cd build
-          zip -rq "FaiCalculer.ipa" Payload
+          zip -rq "$BUILD_ID.ipa" Payload
           rm -rf Payload
-          echo "Created unsigned IPA: build/FaiCalculer.ipa"
+          echo "Created unsigned IPA: build/$BUILD_ID.ipa"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
