@@ -28,7 +28,7 @@ jobs:
       - name: Resolve Swift Package Manager Dependencies
         run: |
           cd ios/App
-          xcodebuild -resolvePackageDependencies -project App.xcodeproj -clt || true
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj || true
 
       - name: Build IPA with Xcode
         run: |
