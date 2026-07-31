@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>FaiCalculer iOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Top App Bar -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="brand-logo">💰</div>
+                <div class="brand-info">
+                    <h1>FaiCalculer</h1>
+                    <span class="brand-subtitle">Cálculo & Recibos</span>
+                </div>
+            </div>
+            <!-- Top Tabs -->
+            <nav class="top-nav">
+                <button class="nav-btn active" id="btn-top-calculo" onclick="switchTopTab('CALCULO')">CÁLCULO</button>
+                <button class="nav-btn" id="btn-top-onza" onclick="switchTopTab('ONZA')">ONZA</button>
+                <button class="nav-btn" id="btn-top-dolar" onclick="switchTopTab('DOLAR')">DÓLAR</button>
+            </nav>
+        </header>
+
+        <!-- Subtabs bar (Only visible in CALCULO mode) -->
+        <div id="subtabs-bar" class="subtabs-container">
+            <button class="subtab-btn active" id="subtab-registro" onclick="switchSubTab('REGISTRO')">REGISTRO</button>
+            <button class="subtab-btn" id="subtab-promedio" onclick="switchSubTab('PROMEDIO')">PROMEDIO</button>
+            <button class="subtab-btn" id="subtab-acumulado" onclick="switchSubTab('ACUMULADO')">ACUMULADO</button>
+            <button class="subtab-btn" id="subtab-prestamos" onclick="switchSubTab('PRESTAMOS')">PRÉSTAMOS</button>
+        </div>
+
+        <!-- Main Content Body -->
+        <main class="content-body">
+
+            <!-- TAB: REGISTRO -->
+            <section id="view-registro" class="view-section active">
+                <div class="section-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-registro" placeholder="Buscar por cliente..." oninput="renderRegistros()">
+                    </div>
+                    <button class="btn-primary" onclick="openFormModal()">
+                        <span class="btn-icon">＋</span> Nuevo Cálculo
+                    </button>
+                </div>
+
+                <div class="card-list" id="list-registros">
+                    <!-- Dynamic calculations inserted here -->
+                </div>
+            </section>
+
+            <!-- TAB: PROMEDIO -->
+            <section id="view-promedio" class="view-section">
+                <div class="section-actions">
+                    <div class="search-box">
+                        <span class="search-icon">👤</span>
+                        <input type="text" id="search-promedio-cliente" placeholder="Filtrar por cliente..." oninput="renderPromedios()">
+                    </div>
+                </div>
+                <div id="container-promedios" class="card-list">
+                    <!-- Dynamic client averages -->
+                </div>
+            </section>
+
+            <!-- TAB: ACUMULADO -->
+            <section id="view-acumulado" class="view-section">
+                <div class="summary-card gold-gradient">
+                    <span class="summary-label">Total Acumulado Registrado</span>
+                    <h2 class="summary-value" id="tv-acumulado-total">S/. 0.00</h2>
+                    <div class="summary-details">
+                        <span>Peso Total: <strong id="tv-acumulado-peso">0.00 g</strong></span>
+                        <span>Mermas: <strong id="tv-acumulado-merma">0.00 g</strong></span>
+                    </div>
+                </div>
+                <div class="card-list" id="list-acumulado">
+                    <!-- Daily aggregated summaries -->
+                </div>
+            </section>
+
+            <!-- TAB: PRESTAMOS -->
+            <section id="view-prestamos" class="view-section">
+                <div class="section-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-prestamo" placeholder="Buscar préstamo..." oninput="renderPrestamos()">
+                    </div>
+                    <button class="btn-primary" onclick="openPrestamoModal()">
+                        <span class="btn-icon">＋</span> Nuevo Préstamo
+                    </button>
+                </div>
+                <div class="card-list" id="list-prestamos">
+                    <!-- Dynamic loans list -->
+                </div>
+            </section>
+
+            <!-- TAB: ONZA (Gold Rate Calculator) -->
+            <section id="view-onza" class="view-section">
+                <div class="calc-card">
+                    <div class="card-header">
+                        <h3>⚡ Cotización de la Onza de Oro</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Onza Troy (USD)</label>
+                            <input type="number" id="quick-onza" value="2650.00" step="0.01" oninput="calculateQuickGold()">
+                        </div>
+                        <div class="form-group">
+                            <label>Ley (%)</label>
+                            <input type="number" id="quick-ley" value="90.0" step="0.1" oninput="calculateQuickGold()">
+                        </div>
+                        <div class="form-group">
+                            <label>Descuento (%)</label>
+                            <input type="number" id="quick-desc" value="1.5" step="0.1" oninput="calculateQuickGold()">
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Cambio (S/.)</label>
+                            <input type="number" id="quick-tc" value="3.78" step="0.01" oninput="calculateQuickGold()">
+                        </div>
+                    </div>
+                    <div class="results-box gold-theme">
+                        <div class="result-item">
+                            <span>Precio por Gramo (USD):</span>
+                            <strong id="res-gold-usd">$0.00</strong>
+                        </div>
+                        <div class="result-item highlight">
+                            <span>Precio por Gramo (S/.):</span>
+                            <strong id="res-gold-soles">S/. 0.00</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: DOLAR (Dollar Exchange Calculator) -->
+            <section id="view-dolar" class="view-section">
+                <div class="calc-card">
+                    <div class="card-header">
+                        <h3>💵 Conversor de Dólar</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Monto USD ($)</label>
+                            <input type="number" id="calc-usd-monto" value="100.00" step="1" oninput="calculateQuickDollar()">
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Cambio (S/.)</label>
+                            <input type="number" id="calc-tc-val" value="3.78" step="0.01" oninput="calculateQuickDollar()">
+                        </div>
+                    </div>
+                    <div class="results-box blue-theme">
+                        <div class="result-item highlight">
+                            <span>Total Soles (S/.):</span>
+                            <strong id="res-dolar-soles">S/. 378.00</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL: FORMULARIO DE CÁLCULO MULTI-MATERIAL -->
+    <div id="modal-form" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-form-title">Nuevo Cálculo de Oro</h3>
+                <button class="modal-close" onclick="closeFormModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <!-- Header Inputs -->
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Cliente</label>
+                        <input type="text" id="form-cliente" placeholder="Nombre del cliente" value="X">
+                    </div>
+                    <div class="form-group">
+                        <label>Onza (USD)</label>
+                        <input type="number" id="form-onza" placeholder="2650.00" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Ley General (%)</label>
+                        <input type="number" id="form-ley-gen" placeholder="90.0" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Desc. (%)</label>
+                        <input type="number" id="form-porcentaje" placeholder="1.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo Cambio (S/.)</label>
+                        <input type="number" id="form-tc" placeholder="3.78" step="0.01">
+                    </div>
+                </div>
+
+                <div class="calculated-preview-bar">
+                    <div>USD/g: <strong id="preview-usd-g">$0.00</strong></div>
+                    <div>S/./g: <strong id="preview-soles-g">S/. 0.00</strong></div>
+                </div>
+
+                <!-- Material Cards Section -->
+                <div class="materials-header">
+                    <h4>Materiales a Procesar</h4>
+                    <button class="btn-secondary btn-sm" onclick="addMaterialCard()">＋ Agregar Material</button>
+                </div>
+
+                <div id="container-materials" class="materials-list">
+                    <!-- Dynamic material cards created here -->
+                </div>
+
+                <!-- Descuentos y Pago Final -->
+                <div class="form-grid margin-top">
+                    <div class="form-group">
+                        <label>Motivo Descuento</label>
+                        <input type="text" id="form-desc-motivo" placeholder="Ej: Adelanto, flete">
+                    </div>
+                    <div class="form-group">
+                        <label>Monto Descuento (S/.)</label>
+                        <input type="number" id="form-desc-monto" placeholder="0.00" step="0.1">
+                    </div>
+                </div>
+
+                <div class="final-payment-card">
+                    <span>PAGO TOTAL</span>
+                    <h2 id="form-pago-total">S/. 0.00</h2>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeFormModal()">Cancelar</button>
+                <button class="btn-primary" onclick="saveFormCalculo()">Guardar Lote</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: PRÉSTAMO FORM -->
+    <div id="modal-prestamo" class="modal-overlay">
+        <div class="modal-container small">
+            <div class="modal-header">
+                <h3>Nuevo Registro de Préstamo</h3>
+                <button class="modal-close" onclick="closePrestamoModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <input type="text" id="p-cliente" placeholder="Nombre del cliente">
+                </div>
+                <div class="form-group">
+                    <label>Monto Prestado (S/.)</label>
+                    <input type="number" id="p-monto" placeholder="0.00" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Detalle / Nota</label>
+                    <input type="text" id="p-detalle" placeholder="Ej: Pago pendiente">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closePrestamoModal()">Cancelar</button>
+                <button class="btn-primary" onclick="savePrestamo()">Guardar Préstamo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: VISTA DE RECIBO PARA IMPRESIÓN -->
+    <div id="modal-ticket" class="modal-overlay">
+        <div class="modal-container ticket-modal">
+            <div class="modal-header">
+                <h3>Recibo Térmico</h3>
+                <button class="modal-close" onclick="closeTicketModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="ticket-content" class="ticket-paper">
+                    <!-- Ticket receipt generated dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeTicketModal()">Cerrar</button>
+                <button class="btn-primary" onclick="printTicket()">Imprimir / Compartir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
