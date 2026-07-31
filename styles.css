@@ -1,151 +1,128 @@
 :root {
-    --bg-main: #0B132B;
-    --bg-card: #1C2541;
-    --bg-card-hover: #232E52;
-    --primary: #3A86FF;
-    --primary-glow: rgba(58, 134, 255, 0.3);
-    --gold: #FFB703;
-    --gold-glow: rgba(255, 183, 3, 0.3);
-    --emerald: #06D6A0;
-    --rose: #EF476F;
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --safe-top: env(safe-area-inset-top, 20px);
-    --safe-bottom: env(safe-area-inset-bottom, 20px);
+    --fajio-navy: #0A1128;
+    --fajio-bg: #0A0F1D;
+    --fajio-card-bg: #FFFFFF;
+    --fajio-border: #334155;
+    --fajio-text-dark: #0A1128;
+    --fajio-text-muted: #94A3B8;
+    --fajio-red-delete: #EF4444;
+    --fajio-blue-icon: #38BDF8;
+    --fajio-dark-bg: #0A0F1D;
+    --fajio-dark-card: #0F172A;
+    --fajio-dark-input: #1E293B;
+    --fajio-dark-border: #334155;
+    --fajio-dark-text: #F8FAFC;
+    --fajio-gold-label: #F59E0B;
+    --fajio-emerald: #10B981;
+    --fajio-blue-btn: #3B82F6;
+    --safe-top: env(safe-area-inset-top, 0px);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-main);
+    background-color: var(--fajio-bg);
+    color: var(--fajio-dark-text);
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    overflow-x: hidden;
 }
 
 .app-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-main);
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    background-color: var(--fajio-bg);
     padding-top: var(--safe-top);
-    padding-bottom: var(--safe-bottom);
 }
 
-/* Header */
-.app-header {
-    background-color: #0F1E36;
-    padding: 16px;
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(10px);
-}
-
-.header-brand {
+/* Encabezado Superior Figma: Inversiones Fajio (Sin ActionBar del sistema) */
+.fajio-header {
+    background: #FFFFFF;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid var(--fajio-border);
 }
 
-.brand-logo {
-    font-size: 28px;
-    background: rgba(255, 183, 3, 0.15);
-    width: 44px;
+.fajio-title {
+    color: var(--fajio-navy);
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 16px 0;
+}
+
+/* Fila 1 Figma: Pestañas Principales (Calculo | Onza (Kitco) | Dolar (bloomberg)) */
+.fajio-top-tabs {
+    display: flex;
     height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    border: 1px solid var(--gold-glow);
+    background: #FFFFFF;
+    border-top: 1px solid var(--fajio-border);
+    border-bottom: 1px solid var(--fajio-border);
 }
 
-.brand-info h1 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #FFFFFF;
-    line-height: 1.1;
-}
-
-.brand-subtitle {
-    font-size: 12px;
-    color: var(--gold);
-    font-weight: 500;
-}
-
-/* Nav Tabs */
-.top-nav {
-    display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px;
-    border-radius: 12px;
-    gap: 4px;
-}
-
-.nav-btn {
+.top-tab-btn {
     flex: 1;
-    padding: 10px;
     border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-weight: 600;
+    background: #FFFFFF;
+    color: var(--fajio-navy);
     font-size: 13px;
-    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
+    border-right: 1px solid var(--fajio-border);
+    transition: background 0.2s ease;
 }
 
-.nav-btn.active {
-    background: var(--gold);
-    color: #0F1E36;
-    box-shadow: 0 2px 10px var(--gold-glow);
+.top-tab-btn:last-child {
+    border-right: none;
 }
 
-/* Subtabs */
-.subtabs-container {
+.top-tab-btn.active {
+    background: #E2E8F0;
+    color: var(--fajio-navy);
+}
+
+/* Fila 2 Figma: Sub-pestañas (Registro | Promedio | Registro Acumulado | Préstamos) */
+.fajio-subtabs {
     display: flex;
-    background: #0D1B2A;
-    padding: 8px 16px;
-    gap: 8px;
-    overflow-x: auto;
-    border-bottom: 1px solid var(--border-color);
+    height: 44px;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--fajio-border);
 }
 
 .subtab-btn {
-    padding: 8px 14px;
-    border: 1px solid var(--border-color);
-    background: transparent;
-    color: var(--text-muted);
-    font-weight: 500;
+    flex: 1;
+    border: none;
+    background: #FFFFFF;
+    color: var(--fajio-navy);
     font-size: 12px;
-    border-radius: 20px;
-    white-space: nowrap;
+    font-weight: normal;
     cursor: pointer;
+    border-right: 1px solid var(--fajio-border);
     transition: all 0.2s ease;
 }
 
-.subtab-btn.active {
-    background: var(--primary);
-    color: #FFFFFF;
-    border-color: var(--primary);
+.subtab-btn:last-child {
+    border-right: none;
 }
 
-/* Content Body */
-.content-body {
+.subtab-btn.active {
+    background: var(--fajio-navy);
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Contenedor Principal de Pantallas */
+.content-container {
     flex: 1;
     padding: 16px;
 }
@@ -156,490 +133,290 @@ body {
 
 .view-section.active {
     display: block;
-    animation: fadeIn 0.25s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Actions Bar */
-.section-actions {
+/* Botones y Búsqueda */
+.action-row {
     display: flex;
     gap: 10px;
     margin-bottom: 16px;
 }
 
-.search-box {
+.search-input {
     flex: 1;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-icon {
-    position: absolute;
-    left: 12px;
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-.search-box input {
-    width: 100%;
-    padding: 12px 12px 12px 36px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    color: var(--text-main);
+    padding: 12px 14px;
+    background: var(--fajio-dark-card);
+    border: 1px solid var(--fajio-dark-border);
+    border-radius: 8px;
+    color: #FFFFFF;
     font-size: 14px;
     outline: none;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, var(--gold), #D48806);
-    color: #0F1E36;
+.btn-fajio-add {
+    background: var(--fajio-gold-label);
+    color: #FFFFFF;
     border: none;
-    padding: 12px 18px;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 12px;
+    padding: 12px 16px;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 8px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 15px var(--gold-glow);
     white-space: nowrap;
 }
 
-.btn-primary:active {
-    transform: scale(0.97);
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.btn-sm {
-    padding: 6px 12px;
-    font-size: 12px;
-}
-
-/* Card Lists */
-.card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.record-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+/* Tarjeta de Registro */
+.fajio-card {
+    background: var(--fajio-dark-card);
+    border: 1px solid var(--fajio-dark-border);
+    border-radius: 12px;
     padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: transform 0.2s ease;
+    margin-bottom: 12px;
 }
 
-.record-card:active {
-    transform: scale(0.99);
-}
-
-.card-top {
+.fajio-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 12px;
 }
 
-.client-name {
-    font-size: 16px;
-    font-weight: 700;
+.fajio-client-name {
     color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.record-date {
+.fajio-date {
+    color: var(--fajio-text-muted);
     font-size: 12px;
-    color: var(--text-muted);
 }
 
-.card-metrics {
+.fajio-grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    background: rgba(0,0,0,0.2);
-    padding: 10px;
-    border-radius: 10px;
+    background: var(--fajio-dark-input);
+    padding: 12px;
+    border-radius: 8px;
     font-size: 13px;
+    margin-bottom: 12px;
 }
 
-.metric-item span {
-    color: var(--text-muted);
+.fajio-grid-item span {
+    color: var(--fajio-gold-label);
     font-size: 11px;
+    font-weight: bold;
     display: block;
 }
 
-.metric-item strong {
-    color: var(--text-main);
+.fajio-grid-item strong {
+    color: #FFFFFF;
+    font-size: 14px;
 }
 
-.card-bottom {
+.fajio-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4px;
 }
 
-.total-pay {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--emerald);
+.fajio-total-pay {
+    color: var(--fajio-emerald);
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.card-actions {
+.fajio-card-buttons {
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
-.action-btn {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
+.btn-icon-action {
+    background: var(--fajio-dark-input);
+    border: 1px solid var(--fajio-dark-border);
+    color: #FFFFFF;
     padding: 6px 10px;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
 }
 
-/* Modals */
+/* Modal Formulario Inversiones Fajio */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.85);
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 100;
-    padding: 16px;
+    z-index: 1000;
+    padding: 12px;
 }
 
 .modal-overlay.active {
     display: flex;
-    animation: modalPop 0.2s ease-out;
 }
 
-@keyframes modalPop {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.modal-container {
+.modal-content-scroll {
     width: 100%;
-    max-width: 480px;
-    max-height: 90vh;
-    background: #131E3A;
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-}
-
-.modal-container.small {
-    max-width: 380px;
-}
-
-.modal-header {
-    padding: 16px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255,255,255,0.03);
-}
-
-.modal-header h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--gold);
-}
-
-.modal-close {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.modal-body {
-    padding: 16px;
+    max-width: 440px;
+    max-height: 92vh;
+    background: var(--fajio-dark-bg);
+    border: 1px solid var(--fajio-dark-border);
+    border-radius: 16px;
     overflow-y: auto;
-    flex: 1;
+    padding: 20px;
+}
+
+.badge-logo {
+    width: 54px;
+    height: 54px;
+    background: rgba(56, 189, 248, 0.15);
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.modal-footer {
-    padding: 14px 16px;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    background: rgba(0,0,0,0.2);
-}
-
-/* Forms */
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.form-group.full-width {
-    grid-column: span 2;
-}
-
-.form-group label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px 12px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    color: var(--text-main);
-    font-size: 14px;
-    font-weight: 600;
-    outline: none;
-}
-
-.form-group input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 2px var(--gold-glow);
-}
-
-/* Calculated Bar */
-.calculated-preview-bar {
-    display: flex;
-    justify-content: space-around;
-    background: rgba(58, 134, 255, 0.15);
-    border: 1px solid rgba(58, 134, 255, 0.3);
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 13px;
-    color: #90E0EF;
-}
-
-.calculated-preview-bar strong {
-    color: #FFFFFF;
-}
-
-/* Material Cards */
-.materials-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 6px;
-}
-
-.materials-header h4 {
-    font-size: 14px;
-    color: var(--text-main);
-}
-
-.materials-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.material-card-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-}
-
-.material-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.material-card-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--gold);
-}
-
-.btn-remove-mat {
-    background: rgba(239, 71, 111, 0.2);
-    color: var(--rose);
-    border: none;
-    border-radius: 6px;
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-.final-payment-card {
-    background: linear-gradient(135deg, rgba(6, 214, 160, 0.2), rgba(15, 30, 54, 0.8));
-    border: 1px solid rgba(6, 214, 160, 0.4);
-    border-radius: 14px;
-    padding: 14px;
-    text-align: center;
-}
-
-.final-payment-card span {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--emerald);
-    letter-spacing: 1px;
-}
-
-.final-payment-card h2 {
+    justify-content: center;
     font-size: 24px;
+    margin: 0 auto 12px auto;
+    border: 1px solid var(--fajio-blue-glow);
+}
+
+.modal-title-main {
     color: #FFFFFF;
-    margin-top: 4px;
-}
-
-.btn-cancel {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
-    border: 1px solid var(--border-color);
-    padding: 12px 18px;
-    font-weight: 600;
-    border-radius: 12px;
-    cursor: pointer;
-}
-
-/* Calculator Tab Cards */
-.calc-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.results-box {
-    padding: 16px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.results-box.gold-theme {
-    background: rgba(255, 183, 3, 0.1);
-    border: 1px solid var(--gold-glow);
-}
-
-.results-box.blue-theme {
-    background: rgba(58, 134, 255, 0.1);
-    border: 1px solid var(--primary-glow);
-}
-
-.result-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-}
-
-.result-item.highlight strong {
-    font-size: 20px;
-    color: var(--gold);
-}
-
-/* Ticket Receipt */
-.ticket-modal {
-    max-width: 360px;
-}
-
-.ticket-paper {
-    background: #FFFFFF;
-    color: #000000;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 16px;
-    border-radius: 8px;
-    font-size: 12px;
-    line-height: 1.4;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.ticket-paper h2 {
+    font-size: 24px;
+    font-weight: bold;
     text-align: center;
-    font-size: 16px;
-    margin-bottom: 4px;
 }
 
-.ticket-divider {
-    border-top: 1px dashed #000;
-    margin: 8px 0;
-}
-
-.summary-card {
-    background: var(--bg-card);
-    border-radius: 16px;
-    padding: 20px;
+.modal-subtitle-gold {
+    color: var(--fajio-gold-label);
+    font-size: 15px;
+    text-align: center;
     margin-bottom: 16px;
 }
 
-.summary-card.gold-gradient {
-    background: linear-gradient(135deg, #1C2541, #2B3A67);
-    border: 1px solid var(--gold-glow);
+.divider-line {
+    height: 1px;
+    background: var(--fajio-dark-border);
+    margin: 16px 0;
 }
 
-.summary-label {
-    font-size: 12px;
-    color: var(--gold);
-    font-weight: 600;
-}
-
-.summary-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 6px 0;
-}
-
-.summary-details {
+.fajio-field-group {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.fajio-label-gold {
+    color: var(--fajio-gold-label);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.fajio-input-box {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    background: var(--fajio-dark-input);
+    border-radius: 8px;
+    padding: 0 12px;
+    border: 1px solid var(--fajio-dark-border);
+}
+
+.fajio-input-box input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+}
+
+.fajio-input-prefix {
+    color: var(--fajio-gold-label);
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.fajio-row-2 {
+    display: flex;
+    gap: 12px;
+}
+
+.fajio-col-2 {
+    flex: 1;
+}
+
+.material-card-block {
+    background: var(--fajio-dark-card);
+    border: 1px solid var(--fajio-dark-border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.material-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.material-title {
+    color: var(--fajio-gold-label);
     font-size: 13px;
-    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.btn-remove-lot {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--fajio-red-delete);
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.final-pay-box {
+    background: var(--fajio-dark-card);
+    border: 1px solid var(--fajio-dark-border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px 0;
+}
+
+.final-pay-title {
+    color: var(--fajio-gold-label);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.final-pay-amount {
+    color: var(--fajio-emerald);
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.btn-save-main {
+    width: 100%;
+    height: 52px;
+    background: var(--fajio-blue-btn);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
