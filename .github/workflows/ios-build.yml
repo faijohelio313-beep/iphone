@@ -29,30 +29,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-
-      - name: Install npm dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: Sync Capacitor iOS assets
-        run: |
-          npx cap copy ios
-          npx cap update ios || true
 
       - name: Build IPA with Xcode
         run: |
           cd ios/App
           DERIVED_DATA_PATH="${GITHUB_WORKSPACE}/DerivedData"
 
-          if [ -d "App.xcworkspace" ]; then
-            BUILD_TARGET="-workspace App.xcworkspace"
-          else
-            BUILD_TARGET="-project App.xcodeproj"
-          fi
+          echo "Building Xcode project..."
 
-          echo "Building Xcode project using $BUILD_TARGET ..."
-
-          xcodebuild $BUILD_TARGET \
+          xcodebuild -project App.xcodeproj \
             -scheme App \
             -configuration Debug \
             -destination 'generic/platform=iOS' \
