@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/fajio_dark_input_bg"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
+
+    <!-- Encabezado de la Tarjeta del Material -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_item_material_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Material #1"
+            android:textColor="#38BDF8"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_item_material_remove"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/fajio_dark_card_bg"
+            android:padding="6dp"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="#EF4444"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Eliminar material" />
+    </RelativeLayout>
+
+    <!-- Fila Ley Específica del Material -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEY DEL MATERIAL"
+        android:textColor="@color/fajio_gold_label"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="@drawable/fajio_dark_card_bg"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@android:drawable/ic_menu_crop"
+            app:tint="@color/fajio_gold_label"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/et_item_material_ley"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="Ej. 750 o 95.95"
+            android:textColorHint="@color/fajio_text_muted"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <!-- Fila Pesos (Sin Fundir, Fundido, Merma) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <!-- Sin Fundir -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PESO SIN FUNDIR"
+                android:textColor="@color/fajio_gold_label"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fajio_dark_card_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <EditText
+                    android:id="@+id/et_item_material_peso_sin_fundir"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="0.000 g"
+                    android:textColorHint="@color/fajio_text_muted"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fundido -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PESO FUNDIDO"
+                android:textColor="@color/fajio_gold_label"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fajio_dark_card_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <EditText
+                    android:id="@+id/et_item_material_peso_fundido"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="0.000 g"
+                    android:textColorHint="@color/fajio_text_muted"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Merma -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MERMA"
+                android:textColor="@color/fajio_gold_label"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fajio_dark_card_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <TextView
+                    android:id="@+id/tv_item_material_merma"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="0 g"
+                    android:textColor="#94A3B8"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Fila Precio Material Calculado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PRECIO MATERIAL:"
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_item_material_precio_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/. 0.00"
+            android:textColor="#10B981"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/fajio_dark_card_bg"
+    android:padding="20dp">
+
+    <!-- Indicador superior de arrastre de hoja -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:background="#334155"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="14dp" />
+
+    <!-- Título del Menú de Acciones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="14dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_preferences"
+            app:tint="#F59E0B"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/tv_dialog_action_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Acciones para el Registro"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_dialog_action_close"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="#94A3B8"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1E293B"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Contenedor dinámico de opciones -->
+    <LinearLayout
+        android:id="@+id/ll_dialog_options_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+</LinearLayout>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fajio_bg"
+    android:padding="12dp">
+
+    <!-- Header Workstation: Titulo + Controles Rapidos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/btn_promedio_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#38BDF8"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_promedio_titulo_cliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROMEDIO Y PONDERACIÓN"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.03" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fórmula Excel =SUMAPRODUCTO(PESOS; LECTURA) / TOTAL_BRUTO"
+                android:textColor="#94A3B8"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_promedio_add_row"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="+ LOTE"
+            android:textColor="#38BDF8"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:backgroundTint="#0F1E36"
+            app:strokeColor="#38BDF8"
+            app:strokeWidth="1dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_promedio_limpiar"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="LIMPIAR"
+            android:textColor="#EF4444"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:backgroundTint="#0F1E36"
+            app:strokeColor="#EF4444"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+    <!-- Tarjeta Principal Tabla Interactiva -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_promedio_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#0F172A"
+        app:strokeColor="#334155"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Cabecera de la Tabla: CANTIDAD | PESOS | LECTURA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#1E293B"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="LOTE #"
+                    android:textColor="#38BDF8"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="PESOS (g)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="LECTURA (Decimal)"
+                    android:textColor="#F59E0B"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <View
+                    android:layout_width="28dp"
+                    android:layout_height="1dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#334155" />
+
+            <!-- Filas Editables de la Tabla (RecyclerView) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_promedio_table"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F59E0B" />
+
+            <!-- Banner Resumen Exclusivo: TOTAL BRUTO, FUNDIDO Y MERMA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#1E293B"
+                android:padding="12dp">
+
+                <!-- Fila 1: TOTAL PESO BRUTO & LECTURA PROMEDIO BRUTO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <!-- Columna Peso Bruto -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TOTAL PESO BRUTO"
+                            android:textColor="#38BDF8"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_prom_tb_pesos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 g"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <!-- Columna Lectura Promedio -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.4"
+                        android:orientation="vertical"
+                        android:gravity="end">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LECTURA PROMEDIO BRUTO"
+                            android:textColor="#F59E0B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_prom_tb_lectura"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00000000"
+                            android:textColor="#F59E0B"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#334155"
+                    android:layout_marginVertical="4dp" />
+
+                <!-- Fila 2: FUNDIDO (Opcional) y MERMA (Calculado) como en Excel -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FUNDIDO (g)"
+                            android:textColor="#94A3B8"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/et_prom_fundido"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:background="@drawable/fajio_dark_input_bg"
+                            android:hint="0.0"
+                            android:textColorHint="#64748B"
+                            android:inputType="numberDecimal"
+                            android:paddingHorizontal="6dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="1dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="end">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MERMA (g)"
+                            android:textColor="#EF4444"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_prom_merma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 g"
+                            android:textColor="#EF4444"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Botón Imprimir Promedio Total Bruto -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_promedio_imprimir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="🖨️ IMPRIMIR PROMEDIO TOTAL BRUTO (ADV-8011N)"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:backgroundTint="#0F1E36"
+        app:cornerRadius="12dp"
+        app:strokeColor="#F59E0B"
+        app:strokeWidth="1dp" />
+
+</LinearLayout>

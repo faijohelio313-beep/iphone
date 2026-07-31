@@ -1,0 +1,97 @@
+name: iOS Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        description: 'Unique build identifier'
+        required: false
+        type: string
+        default: 'FaiCalculer'
+      ios_path:
+        description: 'Path to iOS project'
+        required: false
+        type: string
+        default: 'ios/App'
+      scheme:
+        description: 'Xcode scheme to build'
+        required: false
+        type: string
+        default: 'App'
+      use_signing:
+        description: 'Enable code signing'
+        required: false
+        type: boolean
+        default: false
+      configuration:
+        description: 'Build configuration'
+        required: false
+        type: string
+        default: 'Debug'
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies & sync Capacitor
+        run: |
+          npm install
+          npx cap sync ios
+
+      - name: Build IPA with Xcode
+        env:
+          CONFIGURATION: 'Debug'
+        run: |
+          cd ios/App
+          WORKSPACE="App.xcworkspace"
+          DERIVED_DATA_PATH="${GITHUB_WORKSPACE}/DerivedData"
+
+          xcodebuild -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$DERIVED_DATA_PATH" \
+            CODE_SIGNING_ALLOWED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            DEBUG_INFORMATION_FORMAT=dwarf \
+            ONLY_ACTIVE_ARCH=YES \
+            -quiet build
+
+          APP_PATH=$(find "$DERIVED_DATA_PATH/Build/Products/Debug-iphoneos" -name "App.app" -type d | head -1)
+
+          if [ -z "$APP_PATH" ]; then
+            echo "Error: Could not find App.app"
+            exit 1
+          fi
+
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p build/Payload
+          cp -R "$APP_PATH" build/Payload/
+          cd build
+          zip -rq "FaiCalculer.ipa" Payload
+          rm -rf Payload
+          echo "Created unsigned IPA: build/FaiCalculer.ipa"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FaiCalculer-IPA
+          path: build/*.ipa
+          retention-days: 7

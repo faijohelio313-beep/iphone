@@ -1,0 +1,6 @@
+{
+  "appId": "com.faicalculer.app",
+  "appName": "FaiCalculer",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

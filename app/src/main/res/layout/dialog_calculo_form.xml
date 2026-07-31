@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/fajio_dark_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Botón Cerrar X Superior -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/btn_dialog_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/fajio_dark_card_bg"
+                android:padding="8dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="#FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Cerrar" />
+        </RelativeLayout>
+
+        <!-- Insignia Brillante Superior -->
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/fajio_badge_blue_bg"
+            android:padding="14dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            app:tint="#FFFFFF"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Título Principal -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inversiones Fajio"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cálculo y Recepción de Oro"
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/fajio_dark_border"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Tarjeta 1: Cliente -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/fajio_dark_card_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="@color/fajio_gold_label"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cliente"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE COMPLETO"
+                android:textColor="@color/fajio_gold_label"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/fajio_dark_input_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="@color/fajio_text_muted"
+                    android:layout_marginEnd="10dp" />
+
+                <EditText
+                    android:id="@+id/et_form_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="Ingrese el nombre"
+                    android:textColorHint="@color/fajio_text_muted"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fila ONZA / LEY (SITUADOS JUNTOS EN LA PARTE SUPERIOR) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="14dp">
+
+            <!-- ONZA -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ONZA"
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@android:drawable/ic_menu_compass"
+                        app:tint="@color/fajio_gold_label"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_onza"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="4000"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- LEY -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LEY"
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@android:drawable/ic_menu_crop"
+                        app:tint="@color/fajio_gold_label"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_ley"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="95.95"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fila PORCENTAJE % / T.C. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="14dp">
+
+            <!-- PORCENTAJE % -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PORCENTAJE %"
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content"
+                        android:text="%"
+                        android:textColor="@color/fajio_gold_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_porcentaje"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="9.5"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- T.C. -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="T.C."
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@android:drawable/ic_menu_rotate"
+                        app:tint="@color/fajio_gold_label"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_tc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="3.36"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Fila PRECIO USD / PRECIO SOLES (COTIZACIÓN BASE EN TIEMPO REAL) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <!-- PRECIO USD -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRECIO USD"
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content"
+                        android:text="$"
+                        android:textColor="@color/fajio_gold_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_precio_usd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="111.67"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- PRECIO SOLES -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRECIO SOLES"
+                    android:textColor="@color/fajio_gold_label"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/fajio_dark_input_bg"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
+                    <TextView
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content"
+                        android:text="S/"
+                        android:textColor="@color/fajio_gold_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp" />
+                    <EditText
+                        android:id="@+id/et_form_precio_soles"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="375.21"
+                        android:textColorHint="@color/fajio_text_muted"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- SECCIÓN DE MATERIALES CON BOTÓN DE AÑADIR OTRO MATERIAL     -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PESOS DE MATERIALES"
+                android:textColor="#38BDF8"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_form_add_material"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="➕ Añadir Material"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:backgroundTint="#F59E0B"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <!-- Contenedor dinámico de tarjetas de materiales -->
+        <LinearLayout
+            android:id="@+id/container_form_materiales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Descuento Motivo / Monto -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/fajio_dark_card_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_preferences"
+                    app:tint="@color/fajio_gold_label"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descuento"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- MOTIVO -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="6dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MOTIVO"
+                        android:textColor="@color/fajio_gold_label"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/fajio_dark_input_bg"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/fajio_text_muted"
+                            android:layout_marginEnd="6dp" />
+                        <EditText
+                            android:id="@+id/et_form_desc_motivo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="Descripción"
+                            android:textColorHint="@color/fajio_text_muted"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- MONTO -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="6dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MONTO"
+                        android:textColor="@color/fajio_gold_label"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/fajio_dark_input_bg"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp">
+                        <TextView
+                            android:layout_width="18dp"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="@color/fajio_gold_label"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="6dp" />
+                        <EditText
+                            android:id="@+id/et_form_desc_monto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="0.00"
+                            android:textColorHint="@color/fajio_text_muted"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- PAGO TOTAL DESTACADO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/fajio_dark_card_bg"
+            android:padding="16dp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PAGO TOTAL FINAL"
+                android:textColor="@color/fajio_gold_label"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:id="@+id/tv_form_pago_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S/ 0.00"
+                android:textColor="#10B981"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Botón Guardar Cambios -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_form_guardar_cambios"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="💾 Guardar Lote de Materiales"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="#3B82F6"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+</ScrollView>

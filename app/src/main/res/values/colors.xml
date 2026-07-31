@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Profesional UI/UX Pro Max (Luxury Gold Trading & Dark Cinema Fintech) -->
+    <color name="fajio_navy">#0A1128</color>
+    <color name="fajio_blue_light">#E0F2FE</color>
+    <color name="fajio_bg">#0A0F1D</color>
+    <color name="fajio_card_bg">#FFFFFF</color>
+    <color name="fajio_border">#334155</color>
+    <color name="fajio_text_dark">#0A1128</color>
+    <color name="fajio_text_muted">#94A3B8</color>
+    <color name="fajio_red_delete">#EF4444</color>
+    <color name="fajio_blue_icon">#38BDF8</color>
+
+    <!-- Fórmulas y Cards Modo Oscuro Cinema Pro Max -->
+    <color name="fajio_dark_bg">#0A0F1D</color>
+    <color name="fajio_dark_card">#0F172A</color>
+    <color name="fajio_dark_input">#1E293B</color>
+    <color name="fajio_dark_border">#334155</color>
+    <color name="fajio_dark_text">#F8FAFC</color>
+    <color name="fajio_gold_label">#F59E0B</color>
+    <color name="fajio_blue_glow">#38BDF8</color>
+
+    <color name="purple_500">#0A1128</color>
+    <color name="purple_700">#0A1128</color>
+    <color name="teal_200">#E0F2FE</color>
+    <color name="teal_700">#0A1128</color>
+    <color name="black">#0A1128</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#F8FAFC</color>
+    <color name="primary">#0A1128</color>
+    <color name="primary_dark">#0A1128</color>
+    <color name="accent">#38BDF8</color>
+</resources>

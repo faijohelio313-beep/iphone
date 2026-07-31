@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Inversiones Fajio</string>
+    <string name="tab_calculo">Calculo</string>
+    <string name="tab_onza">Onza (Kitco)</string>
+    <string name="tab_dolar">Dolar (bloomberg)</string>
+
+    <string name="subtab_registro">Registro</string>
+    <string name="subtab_promedio">Promedio</string>
+    <string name="subtab_acumulado">Registro Acumulado</string>
+    <string name="subtab_prestamos">Préstamos</string>
+
+    <string name="btn_nuevo_calculo">+ Nuevo calculo</string>
+    <string name="btn_guardar_cambios">Guardar Cambios</string>
+    <string name="btn_save_quote">Guardar Cotización de Hoy</string>
+</resources>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1A1D20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Título -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:textColor="#FF8F00"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alculo"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Campo: ONZA -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ONZA"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_onza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="Ej. 4017"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Campo: LEY -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEY"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_ley"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="Ej. 95"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Campo: % -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_porcentaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="Ej. 8"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Campo: TC -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TC"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_tc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="Ej. 3.37"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Campo: PRECIO USD -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRECIO USD"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tv_precio_usd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0F8A0F"
+            android:text="$$ 0.00"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Campo: PRECIO SOLES -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRECIO SOLES"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tv_precio_soles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0F0F8A"
+            android:text="S/. 0.00"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Campo: FECHA -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FECHA"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Campo: NOTAS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOTAS / COMENTARIOS"
+            android:textColor="#FF8F00"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
+        <EditText
+            android:id="@+id/et_notas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F00"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:hint="Opcional"
+            android:inputType="text"
+            android:layout_marginBottom="24dp"
+            android:textSize="16sp"
+            android:padding="10dp" />
+
+        <!-- Botones de Acción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btn_dialog_cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#424242"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/btn_dialog_guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF8F00" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

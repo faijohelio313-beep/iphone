@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fajio_bg">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_registro_cards"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="80dp" />
+
+    <!-- Botón Inferior: + NUEVO CÁLCULO limpio sin doble símbolo + -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_nuevo_calculo_action"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/btn_nuevo_calculo"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/fajio_navy"
+        app:cornerRadius="12dp"
+        android:elevation="4dp" />
+
+</RelativeLayout>

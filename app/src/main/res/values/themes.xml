@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.FaiCalculer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/fajio_navy</item>
+        <item name="colorPrimaryVariant">#FFFFFF</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/fajio_blue_light</item>
+        <item name="colorSecondaryVariant">@color/fajio_blue_light</item>
+        <item name="colorOnSecondary">@color/fajio_navy</item>
+        <!-- Status bar color: Clean White with Dark Icons -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Background Color -->
+        <item name="android:windowBackground">@color/fajio_bg</item>
+    </style>
+</resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/fajio_dark_input_bg"
+    android:padding="8dp"
+    android:layout_marginBottom="6dp">
+
+    <!-- Fila 1: Material #1 -->
+    <TextView
+        android:id="@+id/tv_subitem_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Material #1"
+        android:textColor="#38BDF8"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Fila 2: Oz | Ley | Desc % | Tc -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oz: "
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="10.5sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subitem_onza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ley: "
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="10.5sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subitem_ley"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desc %: "
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="10.5sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subitem_descuento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tc: "
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="10.5sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subitem_tc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="10.5sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Fila 3: Sin Fun | Fundido | Merma -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/tv_subitem_peso_sin_fundir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sin Fun: 0g"
+            android:textColor="#E2E8F0"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tv_subitem_peso_fundido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fundido: 0g"
+            android:textColor="#E2E8F0"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tv_subitem_merma"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Merma: 0g"
+            android:textColor="#E2E8F0"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <!-- Fila 4: Gramos Fundido (Izquierda) & Precio Soles (Derecha) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/tv_subitem_gramos_fundido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Gramos Fundido: 0g"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subitem_precio_soles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio Soles: S/. 0.00"
+            android:textColor="@color/fajio_gold_label"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- Fila 5: Pago Material (CENTRADO) -->
+    <TextView
+        android:id="@+id/tv_subitem_pago_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pago Material: S/. 0.00"
+        android:textColor="#10B981"
+        android:textSize="11.5sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="2dp" />
+
+</LinearLayout>

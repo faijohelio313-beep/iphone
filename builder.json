@@ -1,0 +1,13 @@
+{
+  "project": "FaiCalculer",
+  "platform": "ios",
+  "ios": {
+    "path": "ios/App",
+    "scheme": "App",
+    "signing": false
+  },
+  "mobai": {
+    "url": "http://localhost:8686",
+    "device_id": ""
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+build/
+DerivedData/
+.gradle/
+gradle_temp/
+*.log
+ios-builder-main/
+ui-ux-pro-max-skill-main/
+.idea/
+local.properties

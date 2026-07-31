@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/fajio_dark_input_bg"
+    android:padding="10dp"
+    android:layout_marginBottom="6dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_prom_lote_titulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Lote #1"
+        android:textColor="#38BDF8"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_prom_lote_fundido"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="100 g"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_prom_lote_ley"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="95.95%"
+        android:textColor="@color/fajio_gold_label"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_prom_lote_precio_g"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.4"
+        android:text="S/. 386.94/g"
+        android:textColor="#E2E8F0"
+        android:textSize="11sp"
+        android:gravity="end" />
+
+</LinearLayout>
