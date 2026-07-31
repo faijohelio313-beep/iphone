@@ -8,26 +8,6 @@ on:
         required: false
         type: string
         default: 'FaiCalculer'
-      ios_path:
-        description: 'Path to iOS project'
-        required: false
-        type: string
-        default: 'ios/App'
-      scheme:
-        description: 'Xcode scheme to build'
-        required: false
-        type: string
-        default: 'App'
-      use_signing:
-        description: 'Enable code signing'
-        required: false
-        type: boolean
-        default: false
-      configuration:
-        description: 'Build configuration'
-        required: false
-        type: string
-        default: 'Debug'
   push:
     branches: [ main, master ]
 
@@ -49,21 +29,30 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install dependencies & sync Capacitor
+      - name: Install npm dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Sync Capacitor iOS assets
         run: |
-          npm install
-          npx cap sync ios
+          npx cap copy ios
+          npx cap update ios || true
 
       - name: Build IPA with Xcode
-        env:
-          CONFIGURATION: 'Debug'
         run: |
           cd ios/App
-          WORKSPACE="App.xcworkspace"
           DERIVED_DATA_PATH="${GITHUB_WORKSPACE}/DerivedData"
 
-          xcodebuild -workspace App.xcworkspace \
+          if [ -d "App.xcworkspace" ]; then
+            BUILD_TARGET="-workspace App.xcworkspace"
+          else
+            BUILD_TARGET="-project App.xcodeproj"
+          fi
+
+          echo "Building Xcode project using $BUILD_TARGET ..."
+
+          xcodebuild $BUILD_TARGET \
             -scheme App \
             -configuration Debug \
             -destination 'generic/platform=iOS' \
@@ -72,14 +61,16 @@ jobs:
             COMPILER_INDEX_STORE_ENABLE=NO \
             DEBUG_INFORMATION_FORMAT=dwarf \
             ONLY_ACTIVE_ARCH=YES \
-            -quiet build
+            build
 
           APP_PATH=$(find "$DERIVED_DATA_PATH/Build/Products/Debug-iphoneos" -name "App.app" -type d | head -1)
 
           if [ -z "$APP_PATH" ]; then
-            echo "Error: Could not find App.app"
+            echo "Error: Could not find App.app output"
             exit 1
           fi
+
+          echo "Found compiled app at: $APP_PATH"
 
           cd "$GITHUB_WORKSPACE"
           mkdir -p build/Payload
